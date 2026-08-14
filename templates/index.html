@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Traffic Control Management System</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="brand"><span>🚦</span><div><b>TrafficControl</b><small>Management System</small></div></div>
+    <nav>
+      <a class="active" href="#dashboard">📊 Dashboard</a>
+      <a href="#signals">🚦 Traffic Signals</a>
+      <a href="#incidents">🚨 Incidents</a>
+      <a href="#violations">⚠️ Violations</a>
+    </nav>
+    <div class="side-note">College Project<br><strong>Full Stack Web App</strong></div>
+  </aside>
+
+  <main class="main">
+    <header>
+      <div><div class="mobile-brand">🚦 TrafficControl</div><h1 id="dashboard">Traffic Control Dashboard</h1><p>Monitor and manage city traffic from one place.</p></div>
+      <div class="live"><i></i> System Online</div>
+    </header>
+
+    <section class="cards">
+      <div class="card"><span>🚦</span><div><small>Active Signals</small><strong id="signalCount">0</strong></div></div>
+      <div class="card"><span>🚗</span><div><small>Vehicles Today</small><strong id="vehicleCount">0</strong></div></div>
+      <div class="card"><span>🚨</span><div><small>Incidents</small><strong id="incidentCount">0</strong></div></div>
+      <div class="card"><span>⚠️</span><div><small>Violations</small><strong id="violationCount">0</strong></div></div>
+    </section>
+
+    <section class="panel" id="signals">
+      <div class="panel-head"><div><h2>Traffic Signal Control</h2><p>Click a signal to change its status.</p></div><button onclick="loadDashboard()">↻ Refresh</button></div>
+      <div id="signalsGrid" class="signal-grid"></div>
+    </section>
+
+    <section class="two-col">
+      <div class="panel" id="incidents">
+        <div class="panel-head"><h2>Report Incident</h2></div>
+        <form id="incidentForm">
+          <input name="location" placeholder="Location" required>
+          <select name="type" required><option value="">Incident type</option><option>Accident</option><option>Traffic Jam</option><option>Signal Fault</option><option>Road Block</option></select>
+          <textarea name="description" placeholder="Description"></textarea>
+          <button class="primary">Report Incident</button>
+        </form>
+        <div id="incidentList"></div>
+      </div>
+
+      <div class="panel" id="violations">
+        <div class="panel-head"><h2>Add Violation</h2></div>
+        <form id="violationForm">
+          <input name="vehicle_no" placeholder="Vehicle Number (e.g. MH24AB1234)" required>
+          <select name="violation" required><option value="">Violation</option><option>Red Light Jump</option><option>Over Speeding</option><option>No Helmet</option><option>Wrong Parking</option></select>
+          <input name="fine" type="number" min="0" value="500" placeholder="Fine">
+          <button class="primary">Add Violation</button>
+        </form>
+        <div id="violationList"></div>
+      </div>
+    </section>
+    <footer>Traffic Control Management System • College Project</footer>
+  </main>
+</div>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
